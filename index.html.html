@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Near Miss Reporting — การทางพิเศษแห่งประเทศไทย</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112040;
+    --blue: #1a4f8a;
+    --accent: #f5a623;
+    --accent2: #e8372a;
+    --light: #f0f4f9;
+    --white: #ffffff;
+    --text: #1a2535;
+    --muted: #6b7a8d;
+    --border: #dce4ef;
+    --success: #1aab6d;
+    --card-shadow: 0 4px 24px rgba(10,22,40,0.10);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'IBM Plex Sans Thai', 'Sarabun', sans-serif;
+    background: var(--light);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--navy);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  }
+
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo-badge {
+    width: 44px;
+    height: 44px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .header-text h1 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+  }
+
+  .header-text p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 400;
+    margin-top: 1px;
+  }
+
+  .confidential-tag {
+    margin-left: auto;
+    background: rgba(245,166,35,0.15);
+    border: 1px solid rgba(245,166,35,0.4);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  /* HERO BANNER */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    background: rgba(245,166,35,0.08);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 280px; height: 280px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+
+  .hero-icon {
+    font-size: 48px;
+    margin-bottom: 14px;
+    display: block;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.07); }
+  }
+
+  .hero h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    max-width: 480px;
+    margin: 0 auto 20px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  .anon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(26,171,109,0.2);
+    border: 1px solid rgba(26,171,109,0.5);
+    color: #5dffc0;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* STEPS */
+  .steps-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+
+  .steps-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 16px 0;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    position: relative;
+  }
+
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40%;
+    height: 2px;
+    background: var(--border);
+  }
+
+  .step.active:not(:last-child)::after {
+    background: var(--accent);
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+
+  .step.active .step-num {
+    background: var(--accent);
+    color: var(--navy);
+  }
+
+  .step.done .step-num {
+    background: var(--success);
+    color: white;
+  }
+
+  .step-label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .step.active .step-label {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* MAIN FORM AREA */
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  /* PAGES */
+  .page { display: none; animation: fadeIn 0.4s ease; }
+  .page.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-title span {
+    width: 28px;
+    height: 28px;
+    background: var(--navy);
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* FORM ELEMENTS */
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 7px;
+  }
+
+  .required {
+    color: var(--accent2);
+    margin-left: 3px;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(26,79,138,0.1);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.6;
+  }
+
+  .input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  /* SEVERITY */
+  .severity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .severity-option input { display: none; }
+
+  .severity-option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 10px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .severity-option label .icon { font-size: 22px; }
+
+  .severity-option input:checked + label {
+    border-color: currentColor;
+    background: rgba(0,0,0,0.03);
+    font-weight: 700;
+  }
+
+  .sev-low input:checked + label { color: var(--success); border-color: var(--success); background: rgba(26,171,109,0.06); }
+  .sev-med input:checked + label { color: var(--accent); border-color: var(--accent); background: rgba(245,166,35,0.06); }
+  .sev-high input:checked + label { color: var(--accent2); border-color: var(--accent2); background: rgba(232,55,42,0.06); }
+
+  /* CHECKBOX GRID */
+  .check-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .check-item:hover { border-color: var(--blue); background: rgba(26,79,138,0.04); }
+  .check-item.checked { border-color: var(--blue); background: rgba(26,79,138,0.07); color: var(--blue); font-weight: 600; }
+
+  .check-item input { display: none; }
+
+  .check-icon {
+    width: 18px; height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    transition: all 0.2s;
+  }
+
+  .check-item.checked .check-icon {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: white;
+  }
+
+  /* TOGGLE */
+  .toggle-group {
+    display: flex;
+    gap: 10px;
+  }
+
+  .toggle-option input { display: none; }
+  .toggle-option label {
+    padding: 9px 20px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    transition: all 0.2s;
+    margin: 0;
+  }
+
+  .toggle-option input:checked + label {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: white;
+  }
+
+  /* ANONYMOUS TOGGLE */
+  .anon-card {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e8f3ff 100%);
+    border: 1.5px solid #c2d8f5;
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .anon-card:hover { border-color: var(--blue); }
+
+  .anon-card .anon-icon { font-size: 32px; flex-shrink: 0; }
+
+  .anon-card .anon-text h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+
+  .anon-card .anon-text p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .switch {
+    margin-left: auto;
+    width: 44px; height: 24px;
+    background: var(--border);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+
+  .switch.on { background: var(--blue); }
+
+  .switch::after {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    background: white;
+    border-radius: 50%;
+    top: 3px; left: 3px;
+    transition: all 0.3s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+
+  .switch.on::after { left: 23px; }
+
+  /* BUTTONS */
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+  }
+
+  .btn {
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+  }
+
+  .btn-outline:hover { border-color: var(--text); color: var(--text); }
+
+  .btn-primary {
+    background: var(--navy);
+    color: white;
+  }
+
+  .btn-primary:hover { background: var(--blue); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(26,79,138,0.35); }
+
+  .btn-submit {
+    background: linear-gradient(135deg, var(--accent2) 0%, #c0392b 100%);
+    color: white;
+    padding: 14px 36px;
+    font-size: 15px;
+  }
+
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,55,42,0.35); }
+
+  /* SUCCESS PAGE */
+  .success-page {
+    text-align: center;
+    padding: 60px 24px;
+  }
+
+  .success-icon {
+    font-size: 72px;
+    display: block;
+    margin-bottom: 20px;
+    animation: bounce 0.6s ease;
+  }
+
+  @keyframes bounce {
+    0% { transform: scale(0); }
+    60% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  .success-page h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+
+  .success-page p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 420px;
+    margin: 0 auto 28px;
+  }
+
+  .report-id {
+    display: inline-block;
+    background: var(--light);
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 14px 24px;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: 0.1em;
+    margin-bottom: 28px;
+  }
+
+  .what-next {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: var(--card-shadow);
+    text-align: left;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .what-next h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 14px;
+  }
+
+  .next-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .next-num {
+    width: 22px; height: 22px;
+    background: var(--navy);
+    color: white;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .next-text {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  .form-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* HINT TEXT */
+  .hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 5px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* SECTION DIVIDER */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin: 24px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* PROGRESS */
+  .progress-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--accent));
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+
+  @media (max-width: 600px) {
+    .input-row { grid-template-columns: 1fr; }
+    .severity-grid { grid-template-columns: repeat(3, 1fr); }
+    .check-grid { grid-template-columns: 1fr; }
+    .hero h2 { font-size: 22px; }
+    .step-label { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo-badge">🛡️</div>
+    <div class="header-text">
+      <h1>ระบบรายงาน Near Miss</h1>
+      <p>การทางพิเศษแห่งประเทศไทย (กทพ.)</p>
+    </div>
+    <div class="confidential-tag">🔒 ปลอดภัย</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-icon">⚠️</span>
+  <h2>รายงานเหตุการณ์เกือบเกิดอุบัติเหตุ</h2>
+  <p>การรายงานของคุณช่วยป้องกันอุบัติเหตุจริงในอนาคต<br>ข้อมูลของคุณจะถูกเก็บเป็นความลับและนำไปพัฒนาระบบความปลอดภัย</p>
+  <span class="anon-badge">✅ สามารถรายงานแบบไม่ระบุตัวตนได้</span>
+</div>
+
+<!-- STEPS -->
+<div class="steps-bar">
+  <div class="steps-inner">
+    <div class="step active" id="step1">
+      <div class="step-num">1</div>
+      <span class="step-label">ข้อมูลเบื้องต้น</span>
+    </div>
+    <div class="step" id="step2">
+      <div class="step-num">2</div>
+      <span class="step-label">รายละเอียดเหตุการณ์</span>
+    </div>
+    <div class="step" id="step3">
+      <div class="step-num">3</div>
+      <span class="step-label">ยืนยันและส่ง</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- PAGE 1: ข้อมูลเบื้องต้น -->
+  <div class="page active" id="page1">
+    <div class="progress-bar"><div class="progress-fill" style="width:33%"></div></div>
+
+    <!-- Anonymous Toggle -->
+    <div class="anon-card" onclick="toggleAnon(this)">
+      <div class="anon-icon">🎭</div>
+      <div class="anon-text">
+        <h4>รายงานแบบไม่ระบุตัวตน (Anonymous)</h4>
+        <p>ชื่อและแผนกของคุณจะไม่ถูกบันทึก ข้อมูลเหตุการณ์เท่านั้นที่จะถูกส่ง</p>
+      </div>
+      <div class="switch" id="anonSwitch"></div>
+    </div>
+
+    <div class="card" id="identityCard">
+      <div class="card-title"><span>👤</span> ข้อมูลผู้รายงาน</div>
+
+      <div id="identityFields">
+        <div class="input-row">
+          <div class="form-group">
+            <label>ชื่อ-นามสกุล <span class="required">*</span></label>
+            <input type="text" placeholder="ระบุชื่อ หรือเว้นว่างหากไม่ระบุตัวตน">
+          </div>
+          <div class="form-group">
+            <label>แผนก / ฝ่าย <span class="required">*</span></label>
+            <select>
+              <option value="">— เลือกแผนก —</option>
+              <option>ฝ่ายปฏิบัติการและบำรุงรักษา</option>
+              <option>ฝ่ายจัดเก็บค่าผ่านทาง</option>
+              <option>ฝ่ายวิศวกรรม</option>
+              <option>ฝ่ายความปลอดภัย (กอช.)</option>
+              <option>ฝ่ายสารสนเทศ</option>
+              <option>ฝ่ายบริหารทั่วไป</option>
+              <option>อื่นๆ</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>ตำแหน่งงาน</label>
+          <input type="text" placeholder="เช่น พนักงานเก็บเงิน, ช่างซ่อมบำรุง, เจ้าหน้าที่ลาดตระเวน">
+        </div>
+      </div>
+
+      <div class="section-label">📍 สถานที่เกิดเหตุ</div>
+
+      <div class="input-row">
+        <div class="form-group">
+          <label>สายทาง / ด่าน <span class="required">*</span></label>
+          <select>
+            <option value="">— เลือกสายทาง —</option>
+            <option>ทางพิเศษเฉลิมมหานคร</option>
+            <option>ทางพิเศษศรีรัช</option>
+            <option>ทางพิเศษอุดรรัถยา</option>
+            <option>ทางพิเศษบูรพาวิถี</option>
+            <option>ทางพิเศษกาญจนาภิเษก</option>
+            <option>สำนักงานใหญ่ กทพ.</option>
+            <option>อื่นๆ</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>จุดที่เกิดเหตุ</label>
+          <input type="text" placeholder="เช่น ด่านเก็บเงิน กม.5, ไหล่ทาง, ห้องควบคุม">
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="form-group">
+          <label>วันที่เกิดเหตุ <span class="required">*</span></label>
+          <input type="date" id="dateInput">
+        </div>
+        <div class="form-group">
+          <label>เวลาโดยประมาณ <span class="required">*</span></label>
+          <input type="time">
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="goToPage(2)">ถัดไป →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 2: รายละเอียด -->
+  <div class="page" id="page2">
+    <div class="progress-bar"><div class="progress-fill" style="width:66%"></div></div>
+
+    <div class="card">
+      <div class="card-title"><span>⚠️</span> ประเภทเหตุการณ์</div>
+
+      <div class="form-group">
+        <label>ประเภท Near Miss ที่เกิดขึ้น <span class="required">*</span></label>
+        <div class="check-grid" id="typeGrid">
+          <div class="check-item" onclick="toggleCheck(this)">
+            <input type="checkbox"><div class="check-icon"></div>🚗 อุบัติเหตุจราจร
+          </div>
+          <div class="check-item" onclick="toggleCheck(this)">
+            <input type="checkbox"><div class="check-icon"></div>⚡ ไฟฟ้า/อุปกรณ์
+          </div>
+          <div class="check-item" onclick="toggleCheck(this)">
+            <input type="checkbox"><div class="check-icon"></div>🏗️ ตกจากที่สูง
+          </div>
+          <div class="check-item" onclick="toggleCheck(this)">
+            <input type="checkbox"><div class="check-icon"></div>🔧 เครื่องจักร/เครื่องมือ
+          </div>
+          <div class="check-item" onclick="toggleCheck(this)">
+            <input type="checkbox"><div class="check-icon"></div>🧪 สารเคมี/วัตถุอันตราย
+          </div>
+          <div class="check-item" onclick="toggleCheck(this)">
+            <input type="checkbox"><div class="check-icon"></div>🔥 เพลิงไหม้/ควัน
+          </div>
+          <div class="check-item" onclick="toggleCheck(this)">
+            <input type="checkbox"><div class="check-icon"></div>🤕 การยศาสตร์/บาดเจ็บ
+          </div>
+          <div class="check-item" onclick="toggleCheck(this)">
+            <input type="checkbox"><div class="check-icon"></div>📦 วัตถุตกหล่น
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label">📊 ระดับความรุนแรงที่อาจเกิดขึ้น</div>
+
+      <div class="severity-grid">
+        <div class="severity-option sev-low">
+          <input type="radio" name="severity" id="sev1">
+          <label for="sev1"><span class="icon">🟢</span>เล็กน้อย<br><small>บาดเจ็บเล็กน้อย</small></label>
+        </div>
+        <div class="severity-option sev-med">
+          <input type="radio" name="severity" id="sev2">
+          <label for="sev2"><span class="icon">🟡</span>ปานกลาง<br><small>บาดเจ็บสาหัส</small></label>
+        </div>
+        <div class="severity-option sev-high">
+          <input type="radio" name="severity" id="sev3">
+          <label for="sev3"><span class="icon">🔴</span>รุนแรง<br><small>อาจเสียชีวิต</small></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>📝</span> รายละเอียดเหตุการณ์</div>
+
+      <div class="form-group">
+        <label>อธิบายสิ่งที่เกิดขึ้น <span class="required">*</span></label>
+        <textarea placeholder="เล่าเหตุการณ์ที่เกิดขึ้นให้ละเอียด เช่น ขณะที่กำลังทำอะไรอยู่ เกิดอะไรขึ้น และหลีกเลี่ยงได้อย่างไร..."></textarea>
+        <div class="hint">ℹ️ ยิ่งละเอียดยิ่งช่วยป้องกันได้มากขึ้น</div>
+      </div>
+
+      <div class="form-group">
+        <label>สาเหตุที่คิดว่าเกิดจาก</label>
+        <textarea placeholder="เช่น ไม่มีป้ายเตือน, สภาพอุปกรณ์ชำรุด, ขาดการฝึกอบรม, สภาพอากาศ..." style="min-height: 80px;"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>มีผู้ที่เกี่ยวข้องอื่นไหม?</label>
+        <div class="toggle-group">
+          <div class="toggle-option">
+            <input type="radio" name="involved" id="inv1">
+            <label for="inv1">มีบุคคลอื่น</label>
+          </div>
+          <div class="toggle-option">
+            <input type="radio" name="involved" id="inv2" checked>
+            <label for="inv2">เกิดกับตัวเองคนเดียว</label>
+          </div>
+          <div class="toggle-option">
+            <input type="radio" name="involved" id="inv3">
+            <label for="inv3">เกิดกับทรัพย์สิน</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>ข้อเสนอแนะเพื่อป้องกันในอนาคต</label>
+        <textarea placeholder="คุณคิดว่าควรแก้ไขหรือป้องกันได้ด้วยวิธีใด..." style="min-height: 80px;"></textarea>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="goToPage(1)">← ย้อนกลับ</button>
+      <button class="btn btn-primary" onclick="goToPage(3)">ตรวจสอบและส่ง →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 3: ยืนยัน -->
+  <div class="page" id="page3">
+    <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+
+    <div class="card">
+      <div class="card-title"><span>✅</span> ยืนยันก่อนส่งรายงาน</div>
+
+      <div style="background: #fffbf0; border: 1.5px solid #f5d78e; border-radius: 12px; padding: 16px 18px; margin-bottom: 20px;">
+        <div style="font-size: 13px; font-weight: 700; color: #8a6200; margin-bottom: 6px;">📋 สรุปรายงานของคุณ</div>
+        <div style="font-size: 13px; color: #5c4a00; line-height: 1.8;" id="summaryBox">
+          กำลังโหลดข้อมูล...
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>ต้องการให้ กอช. ติดต่อกลับไหม?</label>
+        <div class="toggle-group">
+          <div class="toggle-option">
+            <input type="radio" name="callback" id="cb1">
+            <label for="cb1">ต้องการ</label>
+          </div>
+          <div class="toggle-option">
+            <input type="radio" name="callback" id="cb2" checked>
+            <label for="cb2">ไม่ต้องการ</label>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: rgba(26,171,109,0.07); border: 1.5px solid rgba(26,171,109,0.25); border-radius: 12px; padding: 14px 16px; font-size: 13px; color: #0d6b44; line-height: 1.6;">
+        🔒 <strong>นโยบายความเป็นส่วนตัว:</strong> ข้อมูลของคุณจะถูกเก็บเป็นความลับ ใช้เพื่อการพัฒนาระบบความปลอดภัยเท่านั้น และจะไม่ถูกใช้เพื่อลงโทษผู้รายงาน
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="goToPage(2)">← แก้ไข</button>
+      <button class="btn btn-submit" onclick="submitReport()">📤 ส่งรายงาน</button>
+    </div>
+
+    <div class="form-footer">
+      🛡️ ระบบนี้พัฒนาโดยฝ่ายความปลอดภัย กทพ. | ข้อมูลเข้ารหัสและปลอดภัย
+    </div>
+  </div>
+
+  <!-- SUCCESS PAGE -->
+  <div class="page" id="pageSuccess">
+    <div class="success-page">
+      <span class="success-icon">🎉</span>
+      <h2>ส่งรายงานสำเร็จแล้ว!</h2>
+      <p>ขอบคุณที่ช่วยสร้างความปลอดภัย<br>รายงานของคุณจะถูกตรวจสอบโดยเจ้าหน้าที่ กอช. ภายใน 48 ชั่วโมง</p>
+
+      <div class="report-id" id="reportId">NM-2026-0001</div>
+
+      <div class="what-next">
+        <h4>📌 ขั้นตอนต่อไปหลังการรายงาน</h4>
+        <div class="next-item">
+          <div class="next-num">1</div>
+          <div class="next-text">เจ้าหน้าที่ กอช. รับทราบรายงานและตรวจสอบภายใน <strong>48 ชั่วโมง</strong></div>
+        </div>
+        <div class="next-item">
+          <div class="next-num">2</div>
+          <div class="next-text">ลงพื้นที่ตรวจสอบจุดเกิดเหตุและประเมินความเสี่ยง</div>
+        </div>
+        <div class="next-item">
+          <div class="next-num">3</div>
+          <div class="next-text">ดำเนินการแก้ไขและป้องกันตามรายงาน</div>
+        </div>
+        <div class="next-item">
+          <div class="next-num">4</div>
+          <div class="next-text">สรุปผลรายเดือนเสนอผู้บริหารเพื่อพัฒนาระบบความปลอดภัย</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 28px;">
+        <button class="btn btn-primary" onclick="resetForm()" style="margin: 0 auto;">+ รายงานเหตุการณ์อื่น</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Set today's date
+  document.getElementById('dateInput').valueAsDate = new Date();
+
+  // Anonymous toggle
+  let isAnon = false;
+  function toggleAnon(card) {
+    isAnon = !isAnon;
+    const sw = document.getElementById('anonSwitch');
+    const fields = document.getElementById('identityFields');
+    sw.classList.toggle('on', isAnon);
+    fields.style.opacity = isAnon ? '0.4' : '1';
+    fields.style.pointerEvents = isAnon ? 'none' : 'auto';
+  }
+
+  // Checkbox toggle
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+    const icon = el.querySelector('.check-icon');
+    icon.textContent = el.classList.contains('checked') ? '✓' : '';
+  }
+
+  // Step navigation
+  function updateSteps(page) {
+    for (let i = 1; i <= 3; i++) {
+      const s = document.getElementById('step' + i);
+      s.classList.remove('active', 'done');
+      if (i < page) s.classList.add('done');
+      else if (i === page) s.classList.add('active');
+    }
+  }
+
+  function goToPage(num) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page' + num).classList.add('active');
+    updateSteps(num);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (num === 3) updateSummary();
+  }
+
+  function updateSummary() {
+    const date = document.getElementById('dateInput').value || 'ไม่ระบุ';
+    const checked = [...document.querySelectorAll('.check-item.checked')]
+      .map(el => el.textContent.trim()).join(', ') || 'ไม่ระบุ';
+    const sev = document.querySelector('input[name="severity"]:checked');
+    const sevText = sev ? sev.nextElementSibling.textContent.trim().split('\n')[0] : 'ไม่ระบุ';
+
+    document.getElementById('summaryBox').innerHTML = `
+      <div>📅 <strong>วันที่:</strong> ${date}</div>
+      <div>⚠️ <strong>ประเภท:</strong> ${checked}</div>
+      <div>📊 <strong>ระดับความรุนแรง:</strong> ${sevText}</div>
+      <div>🎭 <strong>การรายงาน:</strong> ${isAnon ? 'ไม่ระบุตัวตน' : 'ระบุตัวตน'}</div>
+    `;
+  }
+
+  function submitReport() {
+    const id = 'NM-2026-' + String(Math.floor(Math.random() * 9000) + 1000);
+    document.getElementById('reportId').textContent = id;
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('pageSuccess').classList.add('active');
+    document.querySelector('.steps-bar').style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function resetForm() {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page1').classList.add('active');
+    document.querySelector('.steps-bar').style.display = 'block';
+    updateSteps(1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
